@@ -1,0 +1,5 @@
+---
+# tasks file for kostyrevaa.static-routes
+
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
