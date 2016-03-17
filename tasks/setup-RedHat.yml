@@ -14,7 +14,7 @@
     owner=root 
     group=root 
     mode=0644
-  when: static_routes|length
+  when: {{nics|length}}
   tags: static-routes
   with_items: "{{nics}}"
     notify:
