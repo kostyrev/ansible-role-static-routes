@@ -6,3 +6,16 @@
   tags: static-routes
   notify:
    - restart network
+
+- name: Add static routes
+  action: template
+    src=nic-static-routes.j2 
+    dest=/etc/sysconfig/network-scripts/route-{{item}} 
+    owner=root 
+    group=root 
+    mode=0644
+  when: static_routes|length
+  tags: static-routes
+  with_items: "{{nics}}"
+    notify:
+      - restart network
