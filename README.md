@@ -25,10 +25,6 @@ Example Playbook
       vars:
         static_routes:
           - "any net 10.16.0.0/16 gw {{ ansible_default_ipv4.gateway }}"
-        nics: 
-          - eth0  
-          - eth1  
-          - eth2 
         nic_static_routes:
           - { gw: '10.1.0.1',
               nm: '255.255.252.0',

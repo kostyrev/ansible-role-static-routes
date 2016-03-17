@@ -1,7 +1,4 @@
 ---
-  nics:
-    - mgmt
-    - pub
   nic_static_routes:
     - { gw: '10.179.97.81',
         nm: '255.255.252.0',
