@@ -25,6 +25,29 @@ Example Playbook
       vars:
         static_routes:
           - "any net 10.16.0.0/16 gw {{ ansible_default_ipv4.gateway }}"
+        nics: 
+          - eth0  
+          - eth1  
+          - eth2 
+        nic_static_routes:
+          - { gw: '10.1.0.1',
+              nm: '255.255.252.0',
+              ni: 'eth0',
+              ad: '10.14.1.0' }
+          - { gw: 172.16.0.254'',
+              nm: '255.255.252.0',
+              ni: 'eth1',
+              ad: '172.16.0.1' }
+          - { gw: '172.16.0.254',
+              nm: '255.255.255.0',
+              ni: 'eth1',
+              ad: '172.23.0.1' }
+          - { gw: '192.168.252.254',
+              nm: '255.255.252.0',
+              ni: 'eth2',
+              ad: '192.168.4.0' }
+ 
+
       roles:
          - kostyrevaa.static-routes
 
