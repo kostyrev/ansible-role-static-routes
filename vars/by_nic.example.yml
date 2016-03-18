@@ -33,4 +33,6 @@
         ni: 'pub',
         ad: '172.16.0.0' }
     
-  
+  nics:         
+    - mgmt
+    - pub
