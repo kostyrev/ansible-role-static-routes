@@ -1,8 +1,18 @@
 ---
 
-- name: render /etc/sysconfig/static-routes
-  template: src=static-routes.j2 dest=/etc/sysconfig/static-routes owner=root group=root mode=0644
-  when: static_routes|length
-  tags: static-routes
-  notify:
-   - restart network
+  - name: render /etc/sysconfig/static-routes
+    template: src=static-routes.j2 dest=/etc/sysconfig/static-routes owner=root group=root mode=0644
+    when: static_routes|length
+    tags: static-routes
+    notify:
+      - restart network
+  - debug: msg='{{nic_static_routes}}'
+
+  - name: Building /etc/sysconfig/network-scripts/route-*
+    template: src=nic-static-routes.j2 dest=/etc/sysconfig/network-scripts/route-{{item}} owner=root group=root mode=0644
+    when: '{{nics}}'
+    tags: static-routes
+    with_items: '{{nics}}'
+    notify:
+      - restart network
+  
